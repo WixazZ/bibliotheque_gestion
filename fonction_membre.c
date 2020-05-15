@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include <string.h>
 
-void demande_adresse(adresse * membre_adresse){
+void demande_adresse(adresse* membre_adresse){
     printf("Adresse :\n");
     printf("Rentrer numero : ");
     fflush(stdin);
@@ -21,21 +21,21 @@ void demande_adresse(adresse * membre_adresse){
     fflush(stdin);
     scanf("%s",membre_adresse->ville);
 }
-void remplir_fichier_membre(membre tab_membre){
+void remplir_fichier_membre(membre* tab_membre){
     //char nom[30], prenom[30],mail[30], metier[30];
     printf("Rentrer Nom : ");
     fflush(stdin);
-    scanf("%s", tab_membre.nom);
+    scanf("%s", tab_membre->nom);
     printf("Rentrer prenom : ");
     fflush(stdin);
-    scanf("%s", tab_membre.prenom);
-    demande_adresse(tab_membre->adresse_membre);
+    scanf("%s", tab_membre->prenom);
+    demande_adresse(&tab_membre->adresse_membre);
     printf("Rentrer mail : ");
     fflush(stdin);
-    scanf("%s", tab_membre.mail);
+    scanf("%s", tab_membre->mail);
     printf("Rentrer metier : ");
     fflush(stdin);
-    scanf("%s", tab_membre.metier);
+    scanf("%s", tab_membre->metier);
 }
 /*
 void f_adresse(adresse* a, FILE* fichier){

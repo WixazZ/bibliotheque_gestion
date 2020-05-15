@@ -20,7 +20,8 @@ membre* recup_membres_data() {
 }
 livre* recup_livres_data() {
     FILE *livres_fichier = fopen("liste_livre.txt", "rb");
-    int n_livre = ftell(livres_fichier)/sizeof(membre);
+    int n_livre = ftell(livres_fichier)/sizeof(livre);
+    printf("test");
     livre * tab_livres = (livre *)malloc(n_livre * sizeof(membre));
     for (int i = 0; i < feof(livres_fichier) == 0; ++i) {
         fread(&tab_livres[i], sizeof(livre), 1, livres_fichier);

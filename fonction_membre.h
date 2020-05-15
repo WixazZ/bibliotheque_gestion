@@ -20,6 +20,6 @@ typedef struct {
     char metier[50];
     liste_pretes liste_pret_membre[3];
 }membre;
-void remplir_fichier_membre(membre);
+void remplir_fichier_membre(membre*);
 //int ajout_membre();
 #endif //PROJET1C_FONCTION_MEMBRE_H
