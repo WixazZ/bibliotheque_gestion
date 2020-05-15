@@ -5,7 +5,6 @@
 #include <stdio.h>
 #include "fonction_membre.h"
 #include "gestion_bin.h"
-#include "fonction_livre.h"
 
 
 /*///////////////////////INITIALISATION FICHIER ET RECUPERATION DANS DES STRUCTURES///////////////////////////////////*/
