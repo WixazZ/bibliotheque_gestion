@@ -30,7 +30,9 @@ livre* recup_livres_data() {
         fread(&tab_livres[i], sizeof(livre), 1, livres_fichier);
     }
     fclose(livres_fichier);
+    printf("test");
     return tab_livres;
+
 }
 /*//////////////////////////////////////////////FIN D INITIALISATION//////////////////////////////////////////////////*/
 
