@@ -3,7 +3,6 @@
 //
 
 #include "fonction_membre.h"
-#include "fonction_livre.h"
 
 /*
 #include <string.h>

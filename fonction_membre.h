@@ -4,7 +4,8 @@
 
 #ifndef PROJET1C_FONCTION_MEMBRE_H
 #define PROJET1C_FONCTION_MEMBRE_H
-#include "fonction_membre.h"
+#include "fonction_livre.h"
+
 typedef struct{
     int numero;
     char voie[100];
