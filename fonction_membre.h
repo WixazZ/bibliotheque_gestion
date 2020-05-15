@@ -4,8 +4,7 @@
 
 #ifndef PROJET1C_FONCTION_MEMBRE_H
 #define PROJET1C_FONCTION_MEMBRE_H
-#include "gestion_bin.h"
-
+#include "fonction_membre.h"
 typedef struct{
     int numero;
     char voie[100];
@@ -20,5 +19,6 @@ typedef struct {
     char metier[50];
     liste_pretes liste_pret_membre[3];
 }membre;
-int ajout_membre();
+
+//int ajout_membre();
 #endif //PROJET1C_FONCTION_MEMBRE_H

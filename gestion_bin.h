@@ -6,8 +6,8 @@
 #define PROJET2C_FONCTIONS_H
 #include <stdlib.h>
 #include <stdio.h>
-#include "fonction_membre.h"
-#include "fonction_livre.h"
 membre* recup_membres_data();
 livre* recup_livres_data();
+void renvoie_membres_data(membre *tab_membre);
+void renvoie_livres_data(livre *tab_livres);
 #endif //PROJET2C_FONCTIONS_H

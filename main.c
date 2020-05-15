@@ -9,6 +9,7 @@
 int main(){
     membre *tab_membres = recup_membres_data();
     livre *tab_livres = recup_livres_data();
-
+    renvoie_livres_data(tab_livres);
+    renvoie_membres_data(tab_membres);
     return 0;
 }

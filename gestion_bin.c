@@ -2,9 +2,10 @@
 // Created by parad on 02/05/2020.
 //
 
-#include "gestion_bin.h"
 #include <stdio.h>
-
+#include "fonction_membre.h"
+#include "gestion_bin.h"
+#include "fonction_livre.h"
 
 
 /*///////////////////////INITIALISATION FICHIER ET RECUPERATION DANS DES STRUCTURES///////////////////////////////////*/
@@ -33,10 +34,11 @@ livre* recup_livres_data() {
 
 /*////////////////////////////////////////////SORTIE ET ENVOIE DES TABLEAUX DANS LE TEXTE/////////////////////////////*/
 void renvoie_membres_data(membre *tab_membre){
-    FILE *membres_fichier = fopen("liste_membre", "wb+");
-
+    FILE *membres_fichier = fopen("liste_membre.txt", "wb+");
+    fwrite (tab_membre, sizeof(tab_membre), sizeof(*tab_membre), membres_fichier);
 }
 void renvoie_livres_data(livre *tab_livres){
-    FILE *livres_fichier = fopen("liste_livre", "wb+");
+    FILE *livres_fichier = fopen("liste_livre.txt", "wb+");
+    fwrite (tab_livres, sizeof(tab_livres), sizeof(*tab_livres), livres_fichier);
 }
 /*////////////////////////////////////////////FIN DE SORTIE ET DES FONCTIONS//////////////////////////////////////////*/

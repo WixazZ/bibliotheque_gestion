@@ -4,9 +4,7 @@
 
 #ifndef PROJET1C_FONCTION_LIVRE_H
 #define PROJET1C_FONCTION_LIVRE_H
-#include "fonction_membre.h"
-#include "fonction_livre.h"
-#include "gestion_bin.h"
+
 typedef struct {
     int jour;
     int mois;
@@ -17,6 +15,7 @@ typedef struct {
     char theme[3];
     int numero;
 }code_livre;
+
 typedef struct {
     code_livre code;
     date date_pret;
