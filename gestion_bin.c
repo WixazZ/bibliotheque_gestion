@@ -12,16 +12,19 @@ membre* recup_membres_data() {
     FILE *membres_fichier = fopen("liste_membre.txt", "rb");
     int n_membres = ftell(membres_fichier)/sizeof(membre);
     membre * tab_membre = (membre*)malloc(n_membres * sizeof(membre));
+
     for (int i = 0; i < feof(membres_fichier) == 0; ++i) {
+        printf("test1");
         fread(&tab_membre[i], sizeof(membre), 1, membres_fichier);
+        printf("test");
     }
     fclose(membres_fichier);
     return tab_membre;
 }
 livre* recup_livres_data() {
+
     FILE *livres_fichier = fopen("liste_livre.txt", "rb");
     int n_livre = ftell(livres_fichier)/sizeof(livre);
-    printf("test");
     livre * tab_livres = (livre *)malloc(n_livre * sizeof(membre));
     for (int i = 0; i < feof(livres_fichier) == 0; ++i) {
         fread(&tab_livres[i], sizeof(livre), 1, livres_fichier);
