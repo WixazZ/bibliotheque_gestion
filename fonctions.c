@@ -124,15 +124,6 @@ livre* recup_livres_data() {
 /*//////////////////////////////////////////////FIN D INITIALISATION//////////////////////////////////////////////////*/
 
 
-
-
-
-
-
-
-
-
-
 /*////////////////////////////////////////////SORTIE ET ENVOIE DES TABLEAUX DANS LE TEXTE/////////////////////////////*/
 void renvoie_membres_data(membre *tab_membre){
     FILE *membres_fichier = fopen("liste_membre", "wb+");
