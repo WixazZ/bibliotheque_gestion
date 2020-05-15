@@ -3,8 +3,7 @@
 //
 
 #include "fonction_membre.h"
-
-/*
+#include <stdio.h>
 #include <string.h>
 void demande_adresse(adresse * membre_adresse){
     printf("Adresse :\n");
@@ -21,32 +20,23 @@ void demande_adresse(adresse * membre_adresse){
     fflush(stdin);
     scanf("%s",membre_adresse->ville);
 }
-void remplir_fichier_membre(){
-    FILE * fichier=fopen("liste_membre","w+");
+void remplir_fichier_membre(membre* tab_membre){
     //char nom[30], prenom[30],mail[30], metier[30];
-    membre* new, new1;
     printf("Rentrer Nom : ");
     fflush(stdin);
-    scanf("%s", new->nom);
+    scanf("%s", tab_membre->nom);
     printf("Rentrer prenom : ");
     fflush(stdin);
     scanf("%s", new->prenom);
-    *demande_adresse(m->adresse_membre);*
+    *demande_adresse(m->adresse_membre);
     printf("Rentrer mail : ");
     fflush(stdin);
     scanf("%s", new->mail);
     printf("Rentrer metier : ");
     fflush(stdin);
     scanf("%s", new->metier);
-    fwrite(new, sizeof(membre),1,fichier);
-    fclose(fichier);
-    fichier=fopen("liste_membre","w+");
-    int x = fread(&new1,sizeof(membre),1,fichier);
-    printf("x: %d",x);
-    printf("nom : %s",new1.nom);
-    fclose(fichier);
 }
-
+/*
 void f_adresse(adresse* a, FILE* fichier){
     fprintf(fichier,"%d, %s %d %s ", a->numero, a->voie, a->CP, a->ville);
 }
