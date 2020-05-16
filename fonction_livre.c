@@ -22,6 +22,7 @@ int addLivre(){
     scanf("%d",&livre1.exemplaire);
     printf("Nombre d'exemplaires prêtés\n");
     scanf("%d",&livre1.nb_pretes);
+    return 0;
 }
 code_livre addCode(code_livre code1){
     printf("Theme de livre");

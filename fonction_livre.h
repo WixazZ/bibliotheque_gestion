@@ -28,7 +28,6 @@ typedef struct {
     int exemplaire;
     int nb_pretes;
 }livre;
-code_livre addCode(anonymous struct);
+code_livre addCode(code_livre);
 int addLivre();
 #endif //PROJET1C_FONCTION_LIVRE_H
-//connard
