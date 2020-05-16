@@ -27,7 +27,7 @@ typedef struct {
     char titre[30];
     int exemplaire;
     int nb_pretes;
-
 }livre;
-
+code_livre addCode(code_livre );
+int addLivre();
 #endif //PROJET1C_FONCTION_LIVRE_H
