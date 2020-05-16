@@ -13,11 +13,11 @@ int dispListLivre (){
 int addLivre(){
     livre livre1;
     printf("Code du livre\n");
-    addCode(&livre1->code);
+    addCode(&livre1.code);
     printf("Auteur\n");
-    gets(livre1->auteur);
+    gets(livre1.auteur);
     printf("Titre\n");
-    gets(livre1->titre);
+    gets(livre1.titre);
     printf("Nombre d'exemplaires\n");
     scanf("%d",&livre1.exemplaire);
     printf("Nombre d'exemplaires prêtés\n");

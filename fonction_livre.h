@@ -28,6 +28,6 @@ typedef struct {
     int exemplaire;
     int nb_pretes;
 }livre;
-code_livre addCode(code_livre );
+code_livre addCode(anonymous struct);
 int addLivre();
 #endif //PROJET1C_FONCTION_LIVRE_H
