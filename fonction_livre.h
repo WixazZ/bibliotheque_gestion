@@ -31,3 +31,4 @@ typedef struct {
 code_livre addCode(anonymous struct);
 int addLivre();
 #endif //PROJET1C_FONCTION_LIVRE_H
+//connard
