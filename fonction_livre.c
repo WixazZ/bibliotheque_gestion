@@ -2,7 +2,6 @@
 // Created by parad on 15/05/2020.
 //
 
-#include "fonction_membre.h"
 #include "fonction_livre.h"
 #include <stdlib.h>
 #include <stdio.h>
@@ -13,7 +12,7 @@ int dispListLivre (){
 int addLivre(){
     livre livre1;
     printf("Code du livre\n");
-    addCode(&livre1.code);
+    addCode(livre1.code);
     printf("Auteur\n");
     gets(livre1.auteur);
     printf("Titre\n");

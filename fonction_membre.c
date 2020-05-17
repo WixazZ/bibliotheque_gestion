@@ -1,7 +1,7 @@
 //
 // Created by parad on 15/05/2020.
 //
-
+#include "gestion_bin.h"
 #include "fonction_membre.h"
 #include <stdio.h>
 #include <string.h>
@@ -37,6 +37,12 @@ void remplir_fichier_membre(membre* tab_membre){
     fflush(stdin);
     scanf("%s", tab_membre->metier);
 }
+
+void ajout_membre(biblio* total){
+    total->liste_membre = increaseMembreSizeByOne(total);
+    remplir_fichier_membre(&total->liste_membre[total->n_membre]);
+}
+
 /*
 void f_adresse(adresse* a, FILE* fichier){
     fprintf(fichier,"%d, %s %d %s ", a->numero, a->voie, a->CP, a->ville);
