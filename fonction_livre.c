@@ -2,32 +2,40 @@
 // Created by parad on 15/05/2020.
 //
 
+
 #include "fonction_livre.h"
 #include <stdlib.h>
 #include <stdio.h>
 
-int dispListLivre (){
+void dispLivre (livre* livre1){
+    printf("code : ");
+    dispCode(livre1->code);
+    printf("Auteur : %s\n",livre1->auteur);
+    printf("Titre : %s\n",livre1->titre);
+    printf("Nombre d'exemplaires : %d\n",livre1->exemplaire);
+    printf("Nombre d'exemplaires disponnibles : %d\n",livre1->dispo);
+}
+void addLivre(livre* livre1){
 
-}
-int addLivre(){
-    livre livre1;
     printf("Code du livre\n");
-    addCode(livre1.code);
+    //addCode(&livre1->code);
+    printf("Theme de livre\n");
+    scanf("%s",livre1->code.theme);
+    printf("numero du livre\n");
+    scanf("%d",&livre1->code.numero);
+    printf("test 1\n");
     printf("Auteur\n");
-    gets(livre1.auteur);
+    scanf("%s",livre1->auteur);
     printf("Titre\n");
-    gets(livre1.titre);
+    scanf("%s",livre1->titre);
     printf("Nombre d'exemplaires\n");
-    scanf("%d",&livre1.exemplaire);
-    printf("Nombre d'exemplaires prêtés\n");
-    scanf("%d",&livre1.nb_pretes);
-    return 0;
+    scanf("%d",&livre1->exemplaire);
+    printf("Nombre d'exemplaires disponnibles\n");
+    scanf("%d",&livre1->dispo);
 }
-code_livre addCode(code_livre code1){
-    printf("Theme de livre");
-    scanf("%c",&code1.theme);
-    printf("numero du livre");
-    scanf("%d",&code1.numero);
-    return(code1);
-    //test
+void dispCode(code_livre code1) {
+    printf("%s", code1.theme);
+    printf("-");
+    printf("%d", code1.numero);
+    printf("\n");
 }
