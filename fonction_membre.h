@@ -7,6 +7,6 @@
 #include "gestion_bin.h"
 
 
-
-void ajout_membre(biblio*);
+void afficher_membre(int);
+void ajout_membre();
 #endif //PROJET1C_FONCTION_MEMBRE_H

@@ -61,9 +61,10 @@ typedef struct{
     histo_emprunt *historique;
 }biblio;
 
+biblio total;
 
-void recup_data(biblio*);
-void renvoie_data(biblio*);
+void recup_data();
+void renvoie_data();
 membre* increaseMembreSizeByOne(biblio*);
-livre* increaseLivreSizeByOne(livre*);
+livre* increaseLivreSizeByOne(biblio*);
 #endif //PROJET2C_FONCTIONS_H

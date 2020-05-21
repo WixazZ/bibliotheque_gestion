@@ -23,10 +23,10 @@ void demande_adresse(adresse* membre_adresse){
 }
 void remplir_fichier_membre(membre* tab_membre){
     //char nom[30], prenom[30],mail[30], metier[30];
-    printf("Rentrer Nom : ");
+    printf("Rentrer NOM : ");
     fflush(stdin);
     scanf("%s", tab_membre->nom);
-    printf("Rentrer prenom : ");
+    printf("Rentrer Prenom : ");
     fflush(stdin);
     scanf("%s", tab_membre->prenom);
     demande_adresse(&tab_membre->adresse_membre);
@@ -38,11 +38,21 @@ void remplir_fichier_membre(membre* tab_membre){
     scanf("%s", tab_membre->metier);
 }
 
-void ajout_membre(biblio* total){
-    total->liste_membre = increaseMembreSizeByOne(total);
-    remplir_fichier_membre(&total->liste_membre[total->n_membre]);
+void ajout_membre(){
+    total.liste_membre = increaseMembreSizeByOne(&total);
+    remplir_fichier_membre(&total.liste_membre[total.n_membre-1]);
 }
 
+void afficher_membre(int id_membre){
+    printf("\n*********************\n");
+    printf("     member n %d\n",id_membre);
+    printf("*********************\n");
+    printf("NOM : %s\n",total.liste_membre[id_membre].nom);
+    printf("Prenom : %s\n",total.liste_membre[id_membre].prenom);
+    printf("Adresse : %d %s, %d, %s\n",total.liste_membre[id_membre].adresse_membre.numero,total.liste_membre[id_membre].adresse_membre.voie,total.liste_membre[id_membre].adresse_membre.CP,total.liste_membre[id_membre].adresse_membre.ville);
+    printf("Email : %s\n",total.liste_membre[id_membre].mail);
+    printf("Métier : %s\n",total.liste_membre[id_membre].metier);
+}
 /*
 void f_adresse(adresse* a, FILE* fichier){
     fprintf(fichier,"%d, %s %d %s ", a->numero, a->voie, a->CP, a->ville);
