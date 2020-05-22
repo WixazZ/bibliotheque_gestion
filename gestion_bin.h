@@ -48,6 +48,7 @@ typedef struct {
     char metier[50];
     emprunt liste_pret_membre[3];
 }membre;
+
 typedef struct{
     membre * emprunteur;
     emprunt * emprunt1;

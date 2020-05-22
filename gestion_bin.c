@@ -116,6 +116,7 @@ membre* increaseMembreSizeByOne(biblio* copie_total) {
     return(temp);
 }
 
+
 livre* increaseLivreSizeByOne(biblio* copie_total) {
     copie_total->n_livre++;
     livre* temp = (livre* ) malloc(copie_total->n_livre*sizeof(livre));

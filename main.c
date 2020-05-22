@@ -8,11 +8,13 @@ int main(){
 
     recup_data();
 
-    ajout_membre();
+    //ajout_membre();
 
-    for (int i = 0; i < total.n_membre; ++i) {
-        afficher_membre(i);
-    }
+    afficher_all_membre();
+
+    //delete_membre();
+
+    afficher_all_membre();
 
     renvoie_data();
 

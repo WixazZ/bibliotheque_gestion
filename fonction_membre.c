@@ -6,6 +6,8 @@
 #include <stdio.h>
 #include <string.h>
 
+
+/*////////////////////////////////AJOUTER MEMBRE//////////////////////////////////////////////////////////////////////*/
 void demande_adresse(adresse* membre_adresse){
     printf("Adresse :\n");
     printf("Rentrer numero : ");
@@ -42,7 +44,17 @@ void ajout_membre(){
     total.liste_membre = increaseMembreSizeByOne(&total);
     remplir_fichier_membre(&total.liste_membre[total.n_membre-1]);
 }
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
+
+
+/*////////////////////////////////AFFICHER MEMBRE/////////////////////////////////////////////////////////////////////*/
+
+void afficher_all_membre(){
+    for (int i = 0; i < total.n_membre; ++i) {
+        afficher_membre(i);
+    }
+}
 void afficher_membre(int id_membre){
     printf("\n*********************\n");
     printf("     member n %d\n",id_membre);
@@ -53,6 +65,29 @@ void afficher_membre(int id_membre){
     printf("Email : %s\n",total.liste_membre[id_membre].mail);
     printf("Métier : %s\n",total.liste_membre[id_membre].metier);
 }
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+
+
+/*///////////////////////////////SUPPRIMER MEMBRE/////////////////////////////////////////////////////////////////////*/
+void DeplacerMembreFinDeListe(int id){
+    membre a_suppr = total.liste_membre[id];
+    for (int i = id; i < total.n_membre-1; ++i) {
+        total.liste_membre[i] = total.liste_membre[i+1];
+    }
+    total.liste_membre[total.n_membre-1] = a_suppr;
+
+}
+void delete_membre(){
+    int id_delete_membre ;
+    printf("Rentre le membre que vous voulez supprimer : ");
+    scanf("%d",&id_delete_membre);
+    DeplacerMembreFinDeListe(id_delete_membre);
+    total.n_membre--;
+}
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+
 /*
 void f_adresse(adresse* a, FILE* fichier){
     fprintf(fichier,"%d, %s %d %s ", a->numero, a->voie, a->CP, a->ville);
@@ -61,7 +96,7 @@ int ajout_membre(){
     membre * new;
 
     remplir_fichier_membre();
-/*
+
     if (fichier!=NULL){
         fwrite(new,sizeof(membre*),1,fichier);
     } else{
