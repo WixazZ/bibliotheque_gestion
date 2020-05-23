@@ -49,6 +49,7 @@ membre * recup_membres_data(biblio* copie_total) {
     }
     fclose(membres_fichier);
     return tab_membre;
+
 }
 livre * recup_livres_data(biblio* copie_total) {
     char * livre_liste = "liste_livre.txt";

@@ -13,17 +13,18 @@ void addLivre(livre* new_livre){
 
     printf("\nCode du livre :\n");
     printf("Theme de livre\n");
-    scanf("%[^\n]",new_livre->code.theme);
+    scanf("%s",new_livre->code.theme);
     printf("numero du livre\n");
     scanf("%d",&new_livre->code.numero);
+    fflush(stdin);
     printf("Auteur\n");
-    fgets(new_livre->auteur,sizeof(new_livre->auteur));
+    fgets(new_livre->auteur,sizeof(new_livre->auteur),stdin);
     printf("Titre\n");
-    fgets(new_livre->titre,sizeof(new_livre->titre));
-    printf("Nombre d'exemplaires\n");
+    fgets(new_livre->titre,sizeof(new_livre->titre),stdin);
+
+    printf("\nNombre d'exemplaires\n");
     scanf("%d",&new_livre->exemplaire);
-    printf("Nombre d'exemplaires disponnibles\n");
-    scanf("%d",&new_livre->dispo);
+    new_livre->dispo = new_livre->exemplaire;
 
 }
 
@@ -91,7 +92,7 @@ void dispListeLivres(){
     while (choixtri != 0 && choixtri != 1 && choixtri != 2 && choixtri != 3 && choixtri != 4 ) {
         scanf("%d", &choixtri);
     }
-    switch (choixtri) {
+    switch(choixtri) {
         case 1 : disptricode();
             break;
         /*case 2 : disptrititre();

@@ -16,29 +16,25 @@ void demande_adresse(adresse* membre_adresse){
     fflush(stdin);
     scanf("%d",&membre_adresse->numero);
     printf("Rentrer voie : ");
-    fflush(stdin);
-    scanf("%s",membre_adresse->voie);
+    fgets(membre_adresse->voie, sizeof(membre_adresse->voie), stdin);
     printf("Rentrer Code Postal : ");
     fflush(stdin);
     scanf("%d",&membre_adresse->CP);
     printf("Rentrer ville : ");
     fflush(stdin);
-    scanf("%s",membre_adresse->ville);
+    scanf("%[^\n]",membre_adresse->ville);
 }
 void remplir_fichier_membre(membre* tab_membre){
     printf("Rentrer NOM : ");
-    fflush(stdin);
-    scanf("%s", tab_membre->nom);
+    fgets(tab_membre->nom, sizeof(tab_membre->nom),stdin);
     printf("Rentrer Prenom : ");
     fflush(stdin);
-    scanf("%s", tab_membre->prenom);
+    fgets(tab_membre->prenom, sizeof(tab_membre->prenom),stdin);
     demande_adresse(&tab_membre->adresse_membre);
     printf("Rentrer mail : ");
-    fflush(stdin);
-    scanf("%s", tab_membre->mail);
+    fgets(tab_membre->mail, sizeof(tab_membre->mail),stdin);
     printf("Rentrer metier : ");
-    fflush(stdin);
-    scanf("%s", tab_membre->metier);
+    fgets(tab_membre->metier, sizeof(tab_membre->metier),stdin);
     tab_membre->n_livre_emprunt = 0;
 }
 
@@ -68,6 +64,11 @@ void afficher_membre(int id_membre){
     printf("Email : %s\n",total.liste_membre[id_membre].mail);
     printf("Metier : %s\n",total.liste_membre[id_membre].metier);
     for (int i = 0; i < total.liste_membre[id_membre].n_livre_emprunt; ++i) {
+        printf("Livre emprunter n %d\n",i);
+        printf("code : ");
+        dispCode(total.liste_membre[id_membre].liste_pret_membre[i].code);
+        printf("\ndate d'emprunt : %d/%d/%d\n", total.liste_membre[id_membre].liste_pret_membre[i].date_pret.jour, total.liste_membre[id_membre].liste_pret_membre[i].date_pret.mois, total.liste_membre[id_membre].liste_pret_membre[i].date_pret.annee);
+        printf("date de retour : %d/%d/%d\n", total.liste_membre[id_membre].liste_pret_membre[i].de_retour.jour, total.liste_membre[id_membre].liste_pret_membre[i].de_retour.mois, total.liste_membre[id_membre].liste_pret_membre[i].de_retour.annee);
 
     }
 }

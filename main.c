@@ -10,11 +10,12 @@ int main(){
     recup_data();
 
     //ajout_membre();
-    afficher_all_membre();
+    //ajouter_un_emprunt();
+    //afficher_all_membre();
     //trie_prenom();
-    //afficher_all_livre();
-    //ajout_livre();
-
+    afficher_all_livre();
+    ajout_livre();
+    afficher_all_livre();
 
     //delete_membre();
 
