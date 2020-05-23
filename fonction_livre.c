@@ -7,6 +7,7 @@
 #include "gestion_bin.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 /*/////////////////////////////////AJOUTER LIVRE//////////////////////////////////////////////////////////////////////*/
 
@@ -65,10 +66,27 @@ void afficher_livre(int id_livre){
 
 /*/////////////////////////////////AFFICHER LES TRI///////////////////////////////////////////////////////////////////*/
 
-void disptricode (){
-
+void disptriCode (){
+    livre buffer;
+    int bufferint;
+    for (int i = 0; i < total.n_livre; ++i) {
+        for (int j = 0; j < total.n_livre; ++j){
+            if (strcmp(total.liste_livre[i].code.theme, total.liste_livre[j].code.theme)<0){
+                buffer = total.liste_livre[i];
+                total.liste_livre[i] = total.liste_livre[j];
+                total.liste_livre[j] = buffer;
+            }
+        }
+    }
+    for (int i = 0 ; i < total.n_livre; i++) {
+        if (total.liste_livre[i].code.numero > total.liste_livre[i + 1].code.numero ) {
+            bufferint = total.liste_livre[i].code.numero ;
+            total.liste_livre[i].code.numero  = total.liste_livre[i + 1].code.numero ;
+            total.liste_livre[i + 1].code.numero  = bufferint;
+        }
+    }
 }
-void disptrinombre (){
+void disptriNombre (){
     int buffer;
     for (int i = 0 ; i < total.n_livre; i++) {
         if (total.liste_livre[i].exemplaire > total.liste_livre[i + 1].exemplaire) {
@@ -79,7 +97,7 @@ void disptrinombre (){
     }
     afficher_all_livre();
 }
-void disptrititre(){
+void disptriTitre(){
     livre buffer;
     for (int i = 0; i < total.n_livre; ++i) {
         for (int j = 0; j < total.n_livre; ++j){
@@ -90,8 +108,21 @@ void disptrititre(){
             }
         }
     }
+    afficher_all_livre();
 }
-
+void disptriAuteur(){
+    livre buffer;
+    for (int i = 0; i < total.n_livre; ++i) {
+        for (int j = 0; j < total.n_livre; ++j){
+            if (strcmp(total.liste_livre[i].auteur, total.liste_livre[j].auteur)<0){
+                buffer = total.liste_livre[i];
+                total.liste_livre[i] = total.liste_livre[j];
+                total.liste_livre[j] = buffer;
+            }
+        }
+    }
+    afficher_all_livre();
+}
 
 
 void dispListeLivres(){
@@ -106,13 +137,13 @@ void dispListeLivres(){
         scanf("%d", &choixtri);
     }
     switch(choixtri) {
-        case 1 : disptricode();
+        case 1 : disptriCode();
             break;
-        /*case 2 : disptrititre();
+        case 2 : disptriTitre();
             break;
-        case 3 : disptriauteur();
-            break;*/
-        case 4 : disptrinombre();
+        case 3 : disptriAuteur();
+            break;
+        case 4 : disptriNombre();
             break;
     }
 }
