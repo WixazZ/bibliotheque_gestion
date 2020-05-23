@@ -140,16 +140,40 @@ void rechercheCode(){
     }
 }
 void rechercheTitre(){
-    char auteurres;
-    printf("Entrez l'auteur dont vous cherchez les livres");
-    fgets(&auteurres,sizeof(total.liste_livre->auteur),stdin);
+    char titreres[30];
+    printf("Entrez le titre livre que vous cherchez");
+    fgets(titreres,sizeof(total.liste_livre->titre),stdin);
+    for (int i = 0; i < total.n_livre; ++i) {
+        if (total.liste_livre[i].titre == titreres){
+            afficher_livre(i);
+            printf("\n*********************\n \n");
 
+        }
+    }
 }
 void rechercheAuteur(){
+    char auteurres[30];
+    printf("Entrez l'auteur dont vous cherchez les livres");
+    fgets(auteurres,sizeof(total.liste_livre->auteur),stdin);
+    for (int i = 0; i < total.n_livre; ++i) {
+        if (total.liste_livre[i].auteur == auteurres){
+            afficher_livre(i);
+            printf("\n*********************\n \n");
 
+        }
+    }
 }
 void rechercheNombre(){
+    int nombreres;
+    printf("Choississez le nombre d'exemplaire");
+    scanf("%d",nombreres);
+    for (int i = 0; i < total.n_livre; ++i) {
+        if (total.liste_livre[i].exemplaire == nombreres){
+            afficher_livre(i);
+            printf("\n*********************\n \n");
 
+        }
+    }
 }
 void menuRecherche(){
     int choixres = 5;
