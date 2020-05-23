@@ -13,13 +13,13 @@ void addLivre(livre* new_livre){
 
     printf("\nCode du livre :\n");
     printf("Theme de livre\n");
-    scanf("%s",new_livre->code.theme);
+    scanf("%[^\n]",new_livre->code.theme);
     printf("numero du livre\n");
     scanf("%d",&new_livre->code.numero);
     printf("Auteur\n");
-    scanf("%s",new_livre->auteur);
+    scanf("%[^\n]",new_livre->auteur);
     printf("Titre\n");
-    scanf("%s",new_livre->titre);
+    scanf("%[^\n]",new_livre->titre);
     printf("Nombre d'exemplaires\n");
     scanf("%d",&new_livre->exemplaire);
     printf("Nombre d'exemplaires disponnibles\n");
@@ -61,7 +61,7 @@ void afficher_livre(int id_livre){
 }
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-/*/////////////////////////////////AFFICHER LES TRI//////////////////////////////////////////////////////////////////////*/
+/*/////////////////////////////////AFFICHER LES TRI///////////////////////////////////////////////////////////////////*/
 
 void disptricode (){
 
