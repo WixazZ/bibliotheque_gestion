@@ -17,9 +17,9 @@ void addLivre(livre* new_livre){
     printf("numero du livre\n");
     scanf("%d",&new_livre->code.numero);
     printf("Auteur\n");
-    scanf("%[^\n]",new_livre->auteur);
+    fgets(new_livre->auteur,sizeof(new_livre->auteur));
     printf("Titre\n");
-    scanf("%[^\n]",new_livre->titre);
+    fgets(new_livre->titre,sizeof(new_livre->titre));
     printf("Nombre d'exemplaires\n");
     scanf("%d",&new_livre->exemplaire);
     printf("Nombre d'exemplaires disponnibles\n");
