@@ -14,7 +14,8 @@ int main(){
     //afficher_all_membre();
     //trie_prenom();
     afficher_all_livre();
-    ajout_livre();
+    dispListeLivres();
+    //ajout_livre();
     afficher_all_livre();
 
     //delete_membre();

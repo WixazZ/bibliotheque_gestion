@@ -13,6 +13,6 @@ void delete_membre();
 void trie_nom();
 void trie_prenom();
 void ajouter_un_emprunt();
-
+void trie_membre();
 
 #endif //PROJET1C_FONCTION_MEMBRE_H

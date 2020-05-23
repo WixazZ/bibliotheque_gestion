@@ -127,6 +127,22 @@ void trie_prenom(){
 
 }
 
+void trie_membre(){
+    int choice;
+    do {
+        printf("choisissez le type d'affichage\n");
+        printf("    -1 pour le tri par nom\n");
+        printf("    -2 pour le tri par prenom\n");
+        printf("    -0 pour quitter le menu\n");
+        scanf("%d",&choice);
+    }while (choice !=1 && choice !=2 && choice !=0);
+    if (choice == 1){
+        trie_nom();
+    } else if(choice == 2){
+        trie_prenom();
+    }
+}
+
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 /*///////////////////////////////////////GESTION PRET LIVRE///////////////////////////////////////////////////////////*/
@@ -206,5 +222,18 @@ void ajouter_un_emprunt(){
     }
 }
 
+void suppr_emprunt(){
+    int choice;
+    do{
+        printf("1-Chercher un membre en particulier  2-afficher tout les membres");
+        fflush(stdin);
+        scanf("%d", &choice);
+    }while (choice !=1 && choice !=2);
+    if (choice == 1){
+        //cherche_membre();
+    } else{
+        trie_membre();
+    }
+}
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
