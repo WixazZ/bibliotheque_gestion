@@ -6,6 +6,7 @@
 #include "fonction_livre.h"
 #include "gestion_bin.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 /*/////////////////////////////////AJOUTER LIVRE//////////////////////////////////////////////////////////////////////*/
 
@@ -76,8 +77,20 @@ void disptrinombre (){
             total.liste_livre[i + 1].exemplaire = buffer;
         }
     }
+    afficher_all_livre();
 }
-
+void disptrititre(){
+    livre buffer;
+    for (int i = 0; i < total.n_livre; ++i) {
+        for (int j = 0; j < total.n_livre; ++j){
+            if (strcmp(total.liste_livre[i].titre, total.liste_livre[j].titre)<0){
+                buffer = total.liste_livre[i];
+                total.liste_livre[i] = total.liste_livre[j];
+                total.liste_livre[j] = buffer;
+            }
+        }
+    }
+}
 
 
 
