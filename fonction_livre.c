@@ -14,7 +14,7 @@
 void addLivre(livre* new_livre){
 
     printf("\nCode du livre :\n");
-    printf("Theme de livre\n");
+    printf("entrez les 3 lettres du theme  \nRoman = ROM \nConte = CON \nNouvelle = NOU \nTheatre = THE \nPoesie = POE \n Fables = FAB\n");
     scanf("%s",new_livre->code.theme);
     printf("numero du livre\n");
     scanf("%d",&new_livre->code.numero);
@@ -123,6 +123,57 @@ void disptriAuteur(){
     }
     afficher_all_livre();
 }
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+/*/////////////////////////////////AFFICHER LES TRI///////////////////////////////////////////////////////////////////*/
+void rechercheCode(){
+    code_livre coderes;
+    printf("entrez les 3 lettres du theme  \nRoman = ROM \nConte = CON \nNouvelle = NOU \nTheatre = THE \nPoesie = POE \n Fables = FAB");
+    printf("puis entrez le numero du livre");
+    scanf("%s",&coderes.theme);
+    printf("numero du livre\n");
+    scanf("%d",&coderes.numero);
+    for (int i = 0; i < total.n_livre ; ++i) {
+        if (total.liste_livre[i].code.theme == coderes.theme && total.liste_livre[i].code.numero == coderes.numero){
+            afficher_livre(i);
+        }
+    }
+}
+void rechercheTitre(){
+    char auteurres;
+    printf("Entrez l'auteur dont vous cherchez les livres");
+    fgets(&auteurres,sizeof(total.liste_livre->auteur),stdin);
+
+}
+void rechercheAuteur(){
+
+}
+void rechercheNombre(){
+
+}
+void menuRecherche(){
+    int choixres = 5;
+    printf("choisissez le type d'affichage\n");
+    printf("    -1 pour rechercher par code\n");
+    printf("    -2 pour rechercher par titre\n");
+    printf("    -3 pour rechercher par auteur\n");
+    printf("    -4 pour rechercher par nombre d'exemplaire\n");
+    printf("    -0 pour quitter le menu");
+    while (choixres != 0 && choixres != 1 && choixres != 2 && choixres != 3 && choixres != 4 ) {
+        scanf("%d", &choixres);
+    }
+    switch(choixres) {
+        case 1 : rechercheCode();
+            break;
+        case 2 : rechercheTitre();
+            break;
+        case 3 : rechercheAuteur();
+            break;
+        case 4 : rechercheNombre();
+            break;
+    }
+}
+
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 /*/////////////////////////////////MENU AFFICHAGE/////////////////////////////////////////////////////////////////////*/
