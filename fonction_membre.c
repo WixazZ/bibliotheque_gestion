@@ -17,7 +17,7 @@ void demande_adresse(adresse* membre_adresse){
     scanf("%d",&membre_adresse->numero);
     printf("Rentrer voie : ");
     fflush(stdin);
-    gets(membre_adresse->voie);
+    scanf("%s",membre_adresse->voie);
     printf("Rentrer Code Postal : ");
     fflush(stdin);
     scanf("%d",&membre_adresse->CP);
@@ -26,7 +26,6 @@ void demande_adresse(adresse* membre_adresse){
     scanf("%s",membre_adresse->ville);
 }
 void remplir_fichier_membre(membre* tab_membre){
-    //char nom[30], prenom[30],mail[30], metier[30];
     printf("Rentrer NOM : ");
     fflush(stdin);
     scanf("%s", tab_membre->nom);
@@ -68,6 +67,9 @@ void afficher_membre(int id_membre){
     printf("Adresse : %d %s, %d, %s\n",total.liste_membre[id_membre].adresse_membre.numero,total.liste_membre[id_membre].adresse_membre.voie,total.liste_membre[id_membre].adresse_membre.CP,total.liste_membre[id_membre].adresse_membre.ville);
     printf("Email : %s\n",total.liste_membre[id_membre].mail);
     printf("Metier : %s\n",total.liste_membre[id_membre].metier);
+    for (int i = 0; i < total.liste_membre[id_membre].n_livre_emprunt; ++i) {
+
+    }
 }
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
@@ -130,6 +132,30 @@ void trie_prenom(){
 
 void add_pret(int id_membre, int id_livre){
 
+    date emprunt;
+    printf("Rentrer la date d'emprunt du Livre : ");
+    printf("\nJour : ");
+    scanf("%d", &emprunt.jour);
+    printf("\nMois : ");
+    scanf("%d", &emprunt.mois);
+    printf("\nAnnee : ");
+    scanf("%d", &emprunt.annee);
+
+    date rendu;
+    printf("Rentrer la date a laquelle le livre doit etre rendu : ");
+    printf("\nJour : ");
+    scanf("%d", &rendu.jour);
+    printf("\nMois : ");
+    scanf("%d", &rendu.mois);
+    printf("\nAnnee : ");
+    scanf("%d", &rendu.annee);
+
+    total.liste_membre[id_membre].liste_pret_membre[total.liste_membre[id_membre].n_livre_emprunt].date_pret = emprunt;
+    total.liste_membre[id_membre].liste_pret_membre[total.liste_membre[id_membre].n_livre_emprunt].de_retour = rendu;
+    total.liste_membre[id_membre].liste_pret_membre[total.liste_membre[id_membre].n_livre_emprunt].code = total.liste_livre[id_livre].code;
+    total.liste_membre[id_membre].n_livre_emprunt++;
+
+
 }
 
 void ajouter_un_emprunt(){
@@ -160,12 +186,13 @@ void ajouter_un_emprunt(){
             printf("\nChoisissez un livre parmis la liste (0-trier par Theme, 1-trier par auteur)");
             scanf("%d", &trie_livre_choice);
         } while (trie_livre_choice != 0 && trie_livre_choice != 1);
-
-        //if (trie_livre_choice == 0){
-        //trie_nom();
-        //} else{
-        //trie_prenom();
-        //}
+        /*
+        if (trie_livre_choice == 0){
+            trie_nom();
+        } else{
+        trie_prenom();
+        }
+        */
 
         afficher_all_livre();
         int choice_livre;

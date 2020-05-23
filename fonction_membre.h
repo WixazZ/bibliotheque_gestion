@@ -6,7 +6,6 @@
 #define PROJET1C_FONCTION_MEMBRE_H
 #include "gestion_bin.h"
 
-
 void afficher_all_membre();
 void afficher_membre(int);
 void ajout_membre();
