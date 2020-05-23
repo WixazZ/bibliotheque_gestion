@@ -13,19 +13,18 @@ typedef struct {
     int mois;
     int annee;
 }date;
+
 typedef struct {
     char theme[3];
     int numero;
 }code_livre;
-
-
 
 typedef struct {
     code_livre code;
     char auteur[30];
     char titre[30];
     int exemplaire;
-    int nb_pretes;
+    int dispo;
 }livre;
 
 typedef struct {
@@ -33,6 +32,7 @@ typedef struct {
     date date_pret;
     date de_retour;
 }emprunt;
+
 typedef struct{
     int numero;
     char voie[100];
@@ -46,6 +46,7 @@ typedef struct {
     adresse adresse_membre;
     char mail[50];
     char metier[50];
+    int n_livre_emprunt;
     emprunt liste_pret_membre[3];
 }membre;
 
@@ -68,4 +69,5 @@ void recup_data();
 void renvoie_data();
 membre* increaseMembreSizeByOne(biblio*);
 livre* increaseLivreSizeByOne(biblio*);
+
 #endif //PROJET2C_FONCTIONS_H

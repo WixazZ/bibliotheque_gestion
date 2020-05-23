@@ -3,11 +3,13 @@
 //
 #include "gestion_bin.h"
 #include "fonction_membre.h"
+#include "fonction_livre.h"
 #include <stdio.h>
 #include <string.h>
 
 
 /*////////////////////////////////AJOUTER MEMBRE//////////////////////////////////////////////////////////////////////*/
+
 void demande_adresse(adresse* membre_adresse){
     printf("Adresse :\n");
     printf("Rentrer numero : ");
@@ -38,12 +40,14 @@ void remplir_fichier_membre(membre* tab_membre){
     printf("Rentrer metier : ");
     fflush(stdin);
     scanf("%s", tab_membre->metier);
+    tab_membre->n_livre_emprunt = 0;
 }
 
 void ajout_membre(){
     total.liste_membre = increaseMembreSizeByOne(&total);
     remplir_fichier_membre(&total.liste_membre[total.n_membre-1]);
 }
+
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 
@@ -63,13 +67,14 @@ void afficher_membre(int id_membre){
     printf("Prenom : %s\n",total.liste_membre[id_membre].prenom);
     printf("Adresse : %d %s, %d, %s\n",total.liste_membre[id_membre].adresse_membre.numero,total.liste_membre[id_membre].adresse_membre.voie,total.liste_membre[id_membre].adresse_membre.CP,total.liste_membre[id_membre].adresse_membre.ville);
     printf("Email : %s\n",total.liste_membre[id_membre].mail);
-    printf("Métier : %s\n",total.liste_membre[id_membre].metier);
+    printf("Metier : %s\n",total.liste_membre[id_membre].metier);
 }
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 
 
 /*///////////////////////////////SUPPRIMER MEMBRE/////////////////////////////////////////////////////////////////////*/
+
 void DeplacerMembreFinDeListe(int id){
     membre a_suppr = total.liste_membre[id];
     for (int i = id; i < total.n_membre-1; ++i) {
@@ -88,55 +93,90 @@ void delete_membre(){
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 
-/*
-void f_adresse(adresse* a, FILE* fichier){
-    fprintf(fichier,"%d, %s %d %s ", a->numero, a->voie, a->CP, a->ville);
+/*///////////////////////////////////////TRIER MEMBRE/////////////////////////////////////////////////////////////////*/
+
+void trie_nom(){
+    membre temp;
+    for (int i = 0; i < total.n_membre; ++i) {
+        for (int j = 0; j < total.n_membre; ++j){
+            if (strcmp(total.liste_membre[i].nom, total.liste_membre[j].nom)<0){
+                temp = total.liste_membre[i];
+                total.liste_membre[i] = total.liste_membre[j];
+                total.liste_membre[j] = temp;
+            }
+        }
+
+    }
+
 }
-int ajout_membre(){
-    membre * new;
+void trie_prenom(){
+    membre temp;
+    for (int i = 0; i < total.n_membre; ++i) {
+        for (int j = 0; j < total.n_membre; ++j){
+            if (strcmp(total.liste_membre[i].prenom, total.liste_membre[j].prenom)<0){
+                temp = total.liste_membre[i];
+                total.liste_membre[i] = total.liste_membre[j];
+                total.liste_membre[j] = temp;
+            }
+        }
 
-    remplir_fichier_membre();
+    }
 
-    if (fichier!=NULL){
-        fwrite(new,sizeof(membre*),1,fichier);
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+/*///////////////////////////////////////GESTION PRET LIVRE///////////////////////////////////////////////////////////*/
+
+void add_pret(int id_membre, int id_livre){
+
+}
+
+void ajouter_un_emprunt(){
+
+    //PARTIE MEMBRE QUI VEUT EMPRUNTER
+    int trie_membre_choice;
+    do {
+        printf("\nChoisissez un membre parmis la liste (0-trier par nom, 1-trier par prenoom)");
+        scanf("%d", &trie_membre_choice);
+    }while (trie_membre_choice!=0 && trie_membre_choice!=1);
+
+    if (trie_membre_choice == 0){
+        trie_nom();
     } else{
-        return 1;
+        trie_prenom();
     }
-    return 0;
-}*/
-/*
-membre new;
-remplir_membre(&new);
-FILE* fichier = NULL;
-fichier=fopen("liste_membre.txt","a+");
 
-if (fichier!=NULL){
-    fprintf(fichier,"%s %s ",new.nom,new.prenom);
-    f_adresse(&new.adresse_membre, fichier);
-    fprintf(fichier,"%s %s\n",new.mail,new.metier);
-    fclose(fichier);
-} else{
-    return 1;
-}
-return 0;
-}
- */
-/*
-int cherche_membre(){
-    char str[60];
+    afficher_all_membre();
 
-    opening file for reading
-    fichier = fopen("file.txt" , "r");
-    if(fichier == NULL) {
-        perror("Error opening file");
-        return(-1);
+    int choice_membre;
+    printf("\nChoisir un id de membre : ");
+    scanf("%d",&choice_membre);
+
+    if (total.liste_membre[choice_membre].n_livre_emprunt<3) {
+        //PARTIE LIVRE A EMPRUNTER
+        int trie_livre_choice;
+        do {
+            printf("\nChoisissez un livre parmis la liste (0-trier par Theme, 1-trier par auteur)");
+            scanf("%d", &trie_livre_choice);
+        } while (trie_livre_choice != 0 && trie_livre_choice != 1);
+
+        //if (trie_livre_choice == 0){
+        //trie_nom();
+        //} else{
+        //trie_prenom();
+        //}
+
+        afficher_all_livre();
+        int choice_livre;
+        printf("\nChoisir un id de livre : ");
+        scanf("%d", &choice_livre);
+
+        add_pret(choice_membre, choice_livre);
+    } else{
+        printf("\n L'utilisateur a emprunter trop de livre");
     }
-    if( fgets (str, 60, fichier)!=NULL ) {
-         writing content to stdout
-        puts(str);
-    }
-    fclose(fichier);
-
-    return(0);
 }
-*/
+
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/

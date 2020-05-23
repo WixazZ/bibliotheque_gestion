@@ -41,24 +41,19 @@ membre * recup_membres_data(biblio* copie_total) {
     FILE *membres_fichier = NULL;
     membres_fichier= ouverture_TXT(membres_liste, "rb", membres_fichier);
     membre recup;
-    printf(" nombre de membre : %d\n",copie_total->n_membre);
+    //printf(" nombre de membre : %d\n",copie_total->n_membre);
     membre *tab_membre =(membre*)malloc(copie_total->n_membre*sizeof(membre));
-    //int unsigned c;
    for (int j = 0; j < copie_total->n_membre; ++j) {
-        /*c =*/ fread(&recup, sizeof(membre), 1, membres_fichier);
-        //printf("coucou %d",c);
+        fread(&recup, sizeof(membre), 1, membres_fichier);
         tab_membre[j]=recup;
     }
-    //printf("\n\n\n%d\n\n\n",sizeof(*tab_membre));
-    //printf("\n\n\nnom : %s",tab_membre[0].nom);
-    //printf("\n\n\nprenom : %s\n\n\n",tab_membre[0].prenom);
     fclose(membres_fichier);
     return tab_membre;
 }
 livre * recup_livres_data(biblio* copie_total) {
     char * livre_liste = "liste_livre.txt";
     copie_total->n_livre = nombre_membre_ou_livre(livre_liste, 0);
-    printf(" nombre de livre : %d",copie_total->n_livre);
+    //printf(" nombre de livre : %d",copie_total->n_livre);
     livre *tab_livre =(livre*)malloc(copie_total->n_livre * sizeof(livre));
     FILE *livre_fichier =NULL;
     livre_fichier= ouverture_TXT(livre_liste, "rb", livre_fichier);

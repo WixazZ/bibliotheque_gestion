@@ -4,38 +4,59 @@
 
 
 #include "fonction_livre.h"
-#include <stdlib.h>
+#include "gestion_bin.h"
 #include <stdio.h>
 
-void dispLivre (livre* livre1){
-    printf("code : ");
-    dispCode(livre1->code);
-    printf("Auteur : %s\n",livre1->auteur);
-    printf("Titre : %s\n",livre1->titre);
-    printf("Nombre d'exemplaires : %d\n",livre1->exemplaire);
-    printf("Nombre d'exemplaires disponnibles : %d\n",livre1->dispo);
-}
-void addLivre(livre* livre1){
+/*/////////////////////////////////AJOUTER LIVRE//////////////////////////////////////////////////////////////////////*/
 
-    printf("Code du livre\n");
-    //addCode(&livre1->code);
+void addLivre(livre* new_livre){
+
+    printf("\nCode du livre :\n");
     printf("Theme de livre\n");
-    scanf("%s",livre1->code.theme);
+    scanf("%s",new_livre->code.theme);
     printf("numero du livre\n");
-    scanf("%d",&livre1->code.numero);
-    printf("test 1\n");
+    scanf("%d",&new_livre->code.numero);
     printf("Auteur\n");
-    scanf("%s",livre1->auteur);
+    scanf("%s",new_livre->auteur);
     printf("Titre\n");
-    scanf("%s",livre1->titre);
+    scanf("%s",new_livre->titre);
     printf("Nombre d'exemplaires\n");
-    scanf("%d",&livre1->exemplaire);
+    scanf("%d",&new_livre->exemplaire);
     printf("Nombre d'exemplaires disponnibles\n");
-    scanf("%d",&livre1->dispo);
+    scanf("%d",&new_livre->dispo);
+
 }
-void dispCode(code_livre code1) {
-    printf("%s", code1.theme);
+
+void ajout_livre(){
+    total.liste_livre = increaseLivreSizeByOne(&total);
+    addLivre(&total.liste_livre[total.n_livre-1]);
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+/*/////////////////////////////////AJOUTER LIVRE//////////////////////////////////////////////////////////////////////*/
+
+void afficher_all_livre(){
+    for (int i = 0; i < total.n_livre; ++i) {
+        afficher_livre(i);
+    }
+}
+
+void dispCode(code_livre code) {
+    printf("%s", code.theme);
     printf("-");
-    printf("%d", code1.numero);
-    printf("\n");
+    printf("%d", code.numero);
 }
+
+void afficher_livre(int id_livre){
+    printf("\n*********************\n");
+    printf("     livre n %d\n",id_livre);
+    printf("*********************\n");
+    printf("Code : ");
+    dispCode(total.liste_livre[id_livre].code);
+    printf("\nAuteur : %s", total.liste_livre[id_livre].auteur);
+    printf("\nTitre : %s", total.liste_livre[id_livre].titre);
+    printf("\nNombre d'exemplaire : %d", total.liste_livre[id_livre].exemplaire);
+    printf("\nNombre de dispo : %d\n", total.liste_livre[id_livre].dispo);
+}
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/

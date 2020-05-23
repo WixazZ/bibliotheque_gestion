@@ -3,18 +3,22 @@
 //
 #include<stdio.h>
 #include "fonction_membre.h"
+#include "fonction_livre.h"
 
 int main(){
 
     recup_data();
 
     //ajout_membre();
+    //afficher_all_membre();
+    //trie_prenom();
+    afficher_all_livre();
+    ajout_livre();
+    afficher_all_livre();
 
-    afficher_all_membre();
 
     //delete_membre();
 
-    afficher_all_membre();
 
     renvoie_data();
 
