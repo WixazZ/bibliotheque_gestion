@@ -60,3 +60,45 @@ void afficher_livre(int id_livre){
     printf("\nNombre de dispo : %d\n", total.liste_livre[id_livre].dispo);
 }
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+/*/////////////////////////////////AFFICHER LES TRI//////////////////////////////////////////////////////////////////////*/
+
+void disptricode (){
+
+}
+void disptrinombre (){
+    int buffer;
+    for (int i = 0 ; i < total.n_livre; i++) {
+        if (total.liste_livre[i].exemplaire > total.liste_livre[i + 1].exemplaire) {
+            buffer = total.liste_livre[i].exemplaire;
+            total.liste_livre[i].exemplaire = total.liste_livre[i + 1].exemplaire;
+            total.liste_livre[i + 1].exemplaire = buffer;
+        }
+    }
+}
+
+
+
+
+void dispListeLivres(){
+    int choixtri = 5;
+    printf("choisissez le type d'affichage\n");
+    printf("    -1 pour le tri par code\n");
+    printf("    -2 pour le tri par titre\n");
+    printf("    -3 pour le tri par auteur\n");
+    printf("    -4 pour le tri par nombre d'exemplaire\n");
+    printf("    -0 pour quitter le menu");
+    while (choixtri != 0 && choixtri != 1 && choixtri != 2 && choixtri != 3 && choixtri != 4 ) {
+        scanf("%d", &choixtri);
+    }
+    switch (choixtri) {
+        case 1 : disptricode();
+            break;
+        /*case 2 : disptrititre();
+            break;
+        case 3 : disptriauteur();
+            break;*/
+        case 4 : disptrinombre();
+            break;
+    }
+}
