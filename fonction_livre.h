@@ -11,4 +11,5 @@ void afficher_livre(int);
 void afficher_all_livre();
 void dispCode(code_livre);
 void dispListeLivres();
+void menuRecherche();
 #endif //PROJET1C_FONCTION_LIVRE_H

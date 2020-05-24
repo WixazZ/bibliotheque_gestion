@@ -8,15 +8,16 @@
 int main(){
 
     recup_data();
-
+    afficher_all_livre();
     //ajout_membre();
     //ajouter_un_emprunt();
     //afficher_all_membre();
     //trie_prenom();
-    afficher_all_livre();
-    dispListeLivres();
+    menuRecherche();
+    //afficher_all_livre();
+    //dispListeLivres();
     //ajout_livre();
-    afficher_all_livre();
+
 
     //delete_membre();
 

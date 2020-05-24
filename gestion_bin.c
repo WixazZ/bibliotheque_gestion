@@ -54,14 +54,14 @@ membre * recup_membres_data(biblio* copie_total) {
 livre * recup_livres_data(biblio* copie_total) {
     char * livre_liste = "liste_livre.txt";
     copie_total->n_livre = nombre_membre_ou_livre(livre_liste, 0);
-    //printf(" nombre de livre : %d",copie_total->n_livre);
+    printf(" nombre de livre : %d",copie_total->n_livre);
     livre *tab_livre =(livre*)malloc(copie_total->n_livre * sizeof(livre));
     FILE *livre_fichier =NULL;
     livre_fichier= ouverture_TXT(livre_liste, "rb", livre_fichier);
     livre recup;
 
     for (int j = 0; j < copie_total->n_livre; ++j) {
-        fread(&recup, sizeof(livre), copie_total->n_livre, livre_fichier);
+        fread(&recup, sizeof(livre), 1, livre_fichier);
         tab_livre[j] = recup;
     }
     fclose(livre_fichier);
@@ -89,7 +89,7 @@ void renvoie_livres_data(livre *tab_livre, int n_livre){
     livres_fichier = ouverture_TXT( fichier,"wb+" ,livres_fichier);
     for (int i = 0; i < n_livre; ++i) {
         recup = tab_livre[i] ;
-        fwrite(&recup, sizeof(livre), n_livre, livres_fichier);
+        fwrite(&recup, sizeof(livre), 1, livres_fichier);
     }
     fclose(livres_fichier);
 }

@@ -37,6 +37,16 @@ void remplir_fichier_membre(membre* tab_membre){
     fgets(tab_membre->metier, sizeof(tab_membre->metier),stdin);
     tab_membre->n_livre_emprunt = 0;
 }
+int verif_membre(membre m){ //verification membre
+    int i;
+
+    for (i = 0; i < total.n_membre; i++){
+        if ((strcmp(total.liste_membre[i].nom, m.nom) == 0)&&(strcmp(total.liste_membre[i].prenom, m.prenom) == 0)){ //compare le noms d'auteurs de deux livres
+            return 1;
+        }
+    }
+    return 0;
+}
 
 void ajout_membre(){
     total.liste_membre = increaseMembreSizeByOne(&total);
@@ -228,12 +238,25 @@ void suppr_emprunt(){
         printf("1-Chercher un membre en particulier  2-afficher tout les membres");
         fflush(stdin);
         scanf("%d", &choice);
+
     }while (choice !=1 && choice !=2);
     if (choice == 1){
         //cherche_membre();
     } else{
         trie_membre();
     }
+    printf("choisissez le membre : ");
+    int id;
+    fflush(stdin);
+    scanf("%d", &id);
+    afficher_membre(id);
+    int choice_suppr;
+    do{
+        printf("choisissez pres a enlever 4 pour annuler : ");
+        fflush(stdin);
+        scanf("%d", &choice_suppr);
+    }while (choice_suppr< 0 || choice_suppr>4);
+
 }
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/

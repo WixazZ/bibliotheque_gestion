@@ -125,12 +125,12 @@ void disptriAuteur(){
 }
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-/*/////////////////////////////////AFFICHER LES TRI///////////////////////////////////////////////////////////////////*/
+/*////////////////////////////////////////RECHERCHE///////////////////////////////////////////////////////////////////*/
 void rechercheCode(){
     code_livre coderes;
-    printf("entrez les 3 lettres du theme  \nRoman = ROM \nConte = CON \nNouvelle = NOU \nTheatre = THE \nPoesie = POE \n Fables = FAB");
-    printf("puis entrez le numero du livre");
-    scanf("%s",&coderes.theme);
+    printf("entrez les 3 lettres du theme  \nRoman = ROM \nConte = CON \nNouvelle = NOU \nTheatre = THE \nPoesie = POE \nFables = FAB");
+    printf("\nPuis entrez le numero du livre");
+    scanf("%s",coderes.theme);
     printf("numero du livre\n");
     scanf("%d",&coderes.numero);
     for (int i = 0; i < total.n_livre ; ++i) {
@@ -154,6 +154,7 @@ void rechercheTitre(){
 void rechercheAuteur(){
     char auteurres[30];
     printf("Entrez l'auteur dont vous cherchez les livres");
+    fflush(stdin);
     fgets(auteurres,sizeof(total.liste_livre->auteur),stdin);
     for (int i = 0; i < total.n_livre; ++i) {
         if (total.liste_livre[i].auteur == auteurres){
@@ -166,7 +167,7 @@ void rechercheAuteur(){
 void rechercheNombre(){
     int nombreres;
     printf("Choississez le nombre d'exemplaire");
-    scanf("%d",nombreres);
+    scanf("%d",&nombreres);
     for (int i = 0; i < total.n_livre; ++i) {
         if (total.liste_livre[i].exemplaire == nombreres){
             afficher_livre(i);
