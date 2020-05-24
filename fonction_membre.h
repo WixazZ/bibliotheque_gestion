@@ -14,5 +14,6 @@ void trie_nom();
 void trie_prenom();
 void ajouter_un_emprunt();
 void trie_membre();
-
+void afficher_emprumt();
+void suppr_emprunt();
 #endif //PROJET1C_FONCTION_MEMBRE_H

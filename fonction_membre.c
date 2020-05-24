@@ -9,6 +9,16 @@
 
 
 /*////////////////////////////////AJOUTER MEMBRE//////////////////////////////////////////////////////////////////////*/
+int verif_membre(membre *m){ //verification membre
+    int i;
+
+    for (i = 0; i < total.n_membre; i++){
+        if ((strcmp(total.liste_membre[i].nom, m->nom) == 0)&&(strcmp(total.liste_membre[i].prenom, m->prenom) == 0)){ //compare le noms d'auteurs de deux livres
+            return 1;
+        }
+    }
+    return 0;
+}
 
 void demande_adresse(adresse* membre_adresse){
     printf("Adresse :\n");
@@ -30,28 +40,25 @@ void remplir_fichier_membre(membre* tab_membre){
     printf("Rentrer Prenom : ");
     fflush(stdin);
     fgets(tab_membre->prenom, sizeof(tab_membre->prenom),stdin);
-    demande_adresse(&tab_membre->adresse_membre);
-    printf("Rentrer mail : ");
-    fgets(tab_membre->mail, sizeof(tab_membre->mail),stdin);
-    printf("Rentrer metier : ");
-    fgets(tab_membre->metier, sizeof(tab_membre->metier),stdin);
-    tab_membre->n_livre_emprunt = 0;
+    int verif = verif_membre(tab_membre);
+    if (verif == 0){
+        demande_adresse(&tab_membre->adresse_membre);
+        printf("Rentrer mail : ");
+        fgets(tab_membre->mail, sizeof(tab_membre->mail),stdin);
+        printf("Rentrer metier : ");
+        fgets(tab_membre->metier, sizeof(tab_membre->metier),stdin);
+        tab_membre->n_livre_emprunt = 0;
+    } else{
+        printf("\nLe membre existe deja\n");
+        total.n_membre--;
+    }
+
 }
 
 
 void ajout_membre(){
     total.liste_membre = increaseMembreSizeByOne(&total);
     remplir_fichier_membre(&total.liste_membre[total.n_membre-1]);
-}
-int verif_membre(membre m){ //verification membre
-    int i;
-
-    for (i = 0; i < total.n_membre; i++){
-        if ((strcmp(total.liste_membre[i].nom, m.nom) == 0)&&(strcmp(total.liste_membre[i].prenom, m.prenom) == 0)){ //compare le noms d'auteurs de deux livres
-            return 1;
-        }
-    }
-    return 0;
 }
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
@@ -82,6 +89,11 @@ void afficher_membre(int id_membre){
         printf("date de retour : %d/%d/%d\n", total.liste_membre[id_membre].liste_pret_membre[i].de_retour.jour, total.liste_membre[id_membre].liste_pret_membre[i].de_retour.mois, total.liste_membre[id_membre].liste_pret_membre[i].de_retour.annee);
 
     }
+}
+
+
+void afficher_emprumt(){
+
 }
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
@@ -182,78 +194,61 @@ void add_pret(int id_membre, int id_livre){
     total.liste_membre[id_membre].liste_pret_membre[total.liste_membre[id_membre].n_livre_emprunt].de_retour = rendu;
     total.liste_membre[id_membre].liste_pret_membre[total.liste_membre[id_membre].n_livre_emprunt].code = total.liste_livre[id_livre].code;
     total.liste_membre[id_membre].n_livre_emprunt++;
-
+    total.liste_livre[id_livre].dispo--;
 
 }
 
 void ajouter_un_emprunt(){
 
     //PARTIE MEMBRE QUI VEUT EMPRUNTER
-    int trie_membre_choice;
-    do {
-        printf("\nChoisissez un membre parmis la liste (0-trier par nom, 1-trier par prenoom)");
-        scanf("%d", &trie_membre_choice);
-    }while (trie_membre_choice!=0 && trie_membre_choice!=1);
-
-    if (trie_membre_choice == 0){
-        trie_nom();
-    } else{
-        trie_prenom();
-    }
-
-    afficher_all_membre();
+    trie_membre();
 
     int choice_membre;
     printf("\nChoisir un id de membre : ");
+    fflush(stdin);
     scanf("%d",&choice_membre);
 
     if (total.liste_membre[choice_membre].n_livre_emprunt<3) {
         //PARTIE LIVRE A EMPRUNTER
-        int trie_livre_choice;
-        do {
-            printf("\nChoisissez un livre parmis la liste (0-trier par Theme, 1-trier par auteur)");
-            scanf("%d", &trie_livre_choice);
-        } while (trie_livre_choice != 0 && trie_livre_choice != 1);
-        /*
-        if (trie_livre_choice == 0){
-            trie_nom();
-        } else{
-        trie_prenom();
-        }
-        */
+        int choice;
+        do{
+            printf("1-rechercher un livre, 2-trier les livres dans un ordre : ");
+            fflush(stdin);
+            scanf("%d",&choice);
 
-        afficher_all_livre();
+        }while (choice != 1 && choice != 2);
+        if (choice==1){
+            menuRecherche();
+        } else{
+            dispListeLivres();
+        }
+
         int choice_livre;
         printf("\nChoisir un id de livre : ");
+        fflush(stdin);
         scanf("%d", &choice_livre);
+        if (total.liste_livre[choice_livre].dispo-1 < 0){
+            printf("ce livre n'est plus en stock");
+        } else{
+            add_pret(choice_membre, choice_livre);
+        }
 
-        add_pret(choice_membre, choice_livre);
     } else{
         printf("\n L'utilisateur a emprunter trop de livre");
     }
 }
 
 void suppr_emprunt(){
-    int choice;
-    do{
-        printf("1-Chercher un membre en particulier  2-afficher tout les membres");
-        fflush(stdin);
-        scanf("%d", &choice);
 
-    }while (choice !=1 && choice !=2);
-    if (choice == 1){
-        //cherche_membre();
-    } else{
-        trie_membre();
-    }
-    printf("choisissez le membre : ");
+    trie_membre();
+    printf("\nchoisissez le membre : ");
     int id;
     fflush(stdin);
     scanf("%d", &id);
     afficher_membre(id);
     int choice_suppr;
     do{
-        printf("choisissez pres a enlever 4 pour annuler : ");
+        printf("choisissez prets a supprimer (4 pour annuler) : ");
         fflush(stdin);
         scanf("%d", &choice_suppr);
     }while (choice_suppr< 0 || choice_suppr>4);
