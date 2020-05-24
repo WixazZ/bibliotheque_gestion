@@ -54,7 +54,7 @@ membre * recup_membres_data(biblio* copie_total) {
 livre * recup_livres_data(biblio* copie_total) {
     char * livre_liste = "liste_livre.txt";
     copie_total->n_livre = nombre_membre_ou_livre(livre_liste, 0);
-    printf(" nombre de livre : %d",copie_total->n_livre);
+    //printf(" nombre de livre : %d",copie_total->n_livre);
     livre *tab_livre =(livre*)malloc(copie_total->n_livre * sizeof(livre));
     FILE *livre_fichier =NULL;
     livre_fichier= ouverture_TXT(livre_liste, "rb", livre_fichier);
@@ -123,6 +123,6 @@ livre* increaseLivreSizeByOne(biblio* copie_total) {
 }
 
 void save(){
-    recup_data();
     renvoie_data();
+
 }

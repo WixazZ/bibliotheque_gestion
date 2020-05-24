@@ -9,10 +9,9 @@
 
 
 /*////////////////////////////////AJOUTER MEMBRE//////////////////////////////////////////////////////////////////////*/
-int verif_membre(membre *m){ //verification membre
-    int i;
+int verif_membre(membre* m){ //verification membre
 
-    for (i = 0; i < total.n_membre; i++){
+    for (int i = 0; i < total.n_membre; i++){
         if ((strcmp(total.liste_membre[i].nom, m->nom) == 0)&&(strcmp(total.liste_membre[i].prenom, m->prenom) == 0)){ //compare le noms d'auteurs de deux livres
             return 1;
         }
@@ -36,16 +35,20 @@ void demande_adresse(adresse* membre_adresse){
 }
 void remplir_fichier_membre(membre* tab_membre){
     printf("Rentrer NOM : ");
+    fflush(stdin);
     fgets(tab_membre->nom, sizeof(tab_membre->nom),stdin);
     printf("Rentrer Prenom : ");
     fflush(stdin);
     fgets(tab_membre->prenom, sizeof(tab_membre->prenom),stdin);
     int verif = verif_membre(tab_membre);
-    if (verif == 0){
+
+    if (verif == 1){
         demande_adresse(&tab_membre->adresse_membre);
         printf("Rentrer mail : ");
+        fflush(stdin);
         fgets(tab_membre->mail, sizeof(tab_membre->mail),stdin);
         printf("Rentrer metier : ");
+        fflush(stdin);
         fgets(tab_membre->metier, sizeof(tab_membre->metier),stdin);
         tab_membre->n_livre_emprunt = 0;
     } else{
@@ -93,7 +96,11 @@ void afficher_membre(int id_membre){
 
 
 void afficher_emprumt(){
-
+    for (int i = 0; i < total.n_membre; ++i) {
+        if (total.liste_membre[i].n_livre_emprunt>0){
+            afficher_membre(i);
+        }
+    }
 }
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
@@ -111,10 +118,17 @@ void DeplacerMembreFinDeListe(int id){
 }
 void delete_membre(){
     int id_delete_membre ;
+    trie_membre();
+    afficher_all_membre();
     printf("Rentre le membre que vous voulez supprimer : ");
     scanf("%d",&id_delete_membre);
-    DeplacerMembreFinDeListe(id_delete_membre);
-    total.n_membre--;
+    if (total.liste_membre[id_delete_membre].n_livre_emprunt!=0){
+        DeplacerMembreFinDeListe(id_delete_membre);
+        total.n_membre--;
+    } else{
+        printf("\n Vous ne pouvez pas supprimer ce membre il n'a pas rendu tout les livres\n");
+    }
+
 }
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
@@ -195,14 +209,13 @@ void add_pret(int id_membre, int id_livre){
     total.liste_membre[id_membre].liste_pret_membre[total.liste_membre[id_membre].n_livre_emprunt].code = total.liste_livre[id_livre].code;
     total.liste_membre[id_membre].n_livre_emprunt++;
     total.liste_livre[id_livre].dispo--;
-
 }
 
 void ajouter_un_emprunt(){
 
     //PARTIE MEMBRE QUI VEUT EMPRUNTER
     trie_membre();
-
+    afficher_all_membre();
     int choice_membre;
     printf("\nChoisir un id de membre : ");
     fflush(stdin);
@@ -238,21 +251,45 @@ void ajouter_un_emprunt(){
     }
 }
 
+int compareDates(date * d1, date* d2)
+{
+    if(d1->annee >d2->annee || (d1->annee==d2->annee && d1->mois >d2->mois) ||(d1->annee ==d2->annee && d1->mois ==d2->mois && d1->jour >d2->jour))
+        return 0;
+    return 1;
+}
+
 void suppr_emprunt(){
 
     trie_membre();
+    afficher_all_membre();
     printf("\nchoisissez le membre : ");
     int id;
     fflush(stdin);
     scanf("%d", &id);
     afficher_membre(id);
+    date today;
+    printf("\nRentrer la date du jour : \n");
+    printf("\njour : ");
+    scanf("%d", &today.jour);
+    printf("\nmois : ");
+    scanf("%d",&today.mois);
+    printf("annee : ");
+    scanf("%d",&today.annee);
+
     int choice_suppr;
     do{
-        printf("choisissez prets a supprimer (4 pour annuler) : ");
+        printf("choisissez prets a rendre (3 pour annuler) : ");
         fflush(stdin);
         scanf("%d", &choice_suppr);
-    }while (choice_suppr< 0 || choice_suppr>4);
-
+    }while (choice_suppr< 0 || choice_suppr>3);
+    int compare = compareDates(&today, &total.liste_membre[id].liste_pret_membre[choice_suppr].de_retour);
+    if (choice_suppr!=3){
+        total.liste_membre[id].n_livre_emprunt--;
+    }
+    if (compare == 1){
+        printf("Le membre n'a pas rendu a temps le livre\n\n");
+    }
+    system("pause");
 }
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/

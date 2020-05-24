@@ -4,9 +4,7 @@
 
 
 #include "fonction_livre.h"
-#include "gestion_bin.h"
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 
 /*/////////////////////////////////AJOUTER LIVRE//////////////////////////////////////////////////////////////////////*/
@@ -95,7 +93,7 @@ void disptriNombre (){
             total.liste_livre[i + 1].exemplaire = buffer;
         }
     }
-    afficher_all_livre();
+   ;
 }
 void disptriTitre(){
     livre buffer;
@@ -108,7 +106,7 @@ void disptriTitre(){
             }
         }
     }
-    afficher_all_livre();
+
 }
 void disptriAuteur(){
     livre buffer;
@@ -121,7 +119,7 @@ void disptriAuteur(){
             }
         }
     }
-    afficher_all_livre();
+
 }
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
@@ -197,6 +195,7 @@ void menuRecherche(){
         case 4 : rechercheNombre();
             break;
     }
+    afficher_all_livre();
 }
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
@@ -224,4 +223,5 @@ void dispListeLivres(){
         case 4 : disptriNombre();
             break;
     }
+    afficher_all_livre();
 }
