@@ -50,17 +50,12 @@ typedef struct {
     emprunt liste_pret_membre[3];
 }membre;
 
-typedef struct{
-    membre * emprunteur;
-    emprunt * emprunt1;
-}histo_emprunt;
 
 typedef struct{
     membre* liste_membre;
     int n_membre;
     livre* liste_livre;
     int n_livre;
-    histo_emprunt *historique;
 }biblio;
 
 biblio total;
@@ -69,5 +64,5 @@ void recup_data();
 void renvoie_data();
 membre* increaseMembreSizeByOne(biblio*);
 livre* increaseLivreSizeByOne(biblio*);
-
+void save();
 #endif //PROJET2C_FONCTIONS_H

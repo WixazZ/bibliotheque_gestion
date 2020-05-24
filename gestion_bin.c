@@ -121,3 +121,8 @@ livre* increaseLivreSizeByOne(biblio* copie_total) {
     } free(copie_total->liste_livre);
     return(temp);
 }
+
+void save(){
+    recup_data();
+    renvoie_data();
+}

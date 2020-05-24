@@ -37,6 +37,12 @@ void remplir_fichier_membre(membre* tab_membre){
     fgets(tab_membre->metier, sizeof(tab_membre->metier),stdin);
     tab_membre->n_livre_emprunt = 0;
 }
+
+
+void ajout_membre(){
+    total.liste_membre = increaseMembreSizeByOne(&total);
+    remplir_fichier_membre(&total.liste_membre[total.n_membre-1]);
+}
 int verif_membre(membre m){ //verification membre
     int i;
 
@@ -46,11 +52,6 @@ int verif_membre(membre m){ //verification membre
         }
     }
     return 0;
-}
-
-void ajout_membre(){
-    total.liste_membre = increaseMembreSizeByOne(&total);
-    remplir_fichier_membre(&total.liste_membre[total.n_membre-1]);
 }
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
