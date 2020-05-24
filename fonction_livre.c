@@ -128,23 +128,23 @@ void disptriAuteur(){
 /*////////////////////////////////////////RECHERCHE///////////////////////////////////////////////////////////////////*/
 void rechercheCode(){
     code_livre coderes;
-    printf("entrez les 3 lettres du theme  \nRoman = ROM \nConte = CON \nNouvelle = NOU \nTheatre = THE \nPoesie = POE \nFables = FAB");
-    printf("\nPuis entrez le numero du livre");
+    printf("entrez les 3 lettres du theme  \nRoman = ROM \nConte = CON \nNouvelle = NOU \nTheatre = THE \nPoesie = POE \nFables = FAB\n");
     scanf("%s",coderes.theme);
-    printf("numero du livre\n");
+    printf("\nPuis entrez le numero du livre\n");
     scanf("%d",&coderes.numero);
     for (int i = 0; i < total.n_livre ; ++i) {
-        if (total.liste_livre[i].code.theme == coderes.theme && total.liste_livre[i].code.numero == coderes.numero){
+        if (strcmp(total.liste_livre[i].code.theme,coderes.theme)==0 && total.liste_livre[i].code.numero == coderes.numero){
             afficher_livre(i);
         }
     }
 }
 void rechercheTitre(){
     char titreres[30];
-    printf("Entrez le titre livre que vous cherchez");
+    printf("Entrez le titre du livre que vous cherchez\n");
+    fflush(stdin);
     fgets(titreres,sizeof(total.liste_livre->titre),stdin);
     for (int i = 0; i < total.n_livre; ++i) {
-        if (total.liste_livre[i].titre == titreres){
+        if (strcmp(total.liste_livre[i].titre,titreres)==0){
             afficher_livre(i);
             printf("\n*********************\n \n");
 
@@ -153,11 +153,11 @@ void rechercheTitre(){
 }
 void rechercheAuteur(){
     char auteurres[30];
-    printf("Entrez l'auteur dont vous cherchez les livres");
+    printf("Entrez l'auteur dont vous cherchez les livres\n");
     fflush(stdin);
     fgets(auteurres,sizeof(total.liste_livre->auteur),stdin);
     for (int i = 0; i < total.n_livre; ++i) {
-        if (total.liste_livre[i].auteur == auteurres){
+        if (strcmp(total.liste_livre[i].auteur,auteurres)==0){
             afficher_livre(i);
             printf("\n*********************\n \n");
 
@@ -183,7 +183,7 @@ void menuRecherche(){
     printf("    -2 pour rechercher par titre\n");
     printf("    -3 pour rechercher par auteur\n");
     printf("    -4 pour rechercher par nombre d'exemplaire\n");
-    printf("    -0 pour quitter le menu");
+    printf("    -0 pour quitter le menu\n");
     while (choixres != 0 && choixres != 1 && choixres != 2 && choixres != 3 && choixres != 4 ) {
         scanf("%d", &choixres);
     }
@@ -210,7 +210,7 @@ void dispListeLivres(){
     printf("    -2 pour le tri par titre\n");
     printf("    -3 pour le tri par auteur\n");
     printf("    -4 pour le tri par nombre d'exemplaire\n");
-    printf("    -0 pour quitter le menu");
+    printf("    -0 pour quitter le menu\n");
     while (choixtri != 0 && choixtri != 1 && choixtri != 2 && choixtri != 3 && choixtri != 4 ) {
         scanf("%d", &choixtri);
     }

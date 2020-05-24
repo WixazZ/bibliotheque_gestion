@@ -13,10 +13,11 @@ int main(){
     //ajouter_un_emprunt();
     //afficher_all_membre();
     //trie_prenom();
+    //ajout_livre();
     menuRecherche();
     //afficher_all_livre();
     //dispListeLivres();
-    //ajout_livre();
+
 
 
     //delete_membre();
