@@ -129,6 +129,7 @@ int main(){
     }
 
     renvoie_data();
-
+    free(total.liste_membre);
+    free(total.liste_livre);
     return 0;
 }
